@@ -74,7 +74,7 @@
         </div>
     </form>
 
-    <?php echo '<div class"tabella"><div class="row mt-2 mb-1">';
+    <?php echo '<div class="tabella"><div class="row mt-2 mb-3">';
     $parking = $_GET['parking'] ?? "off";
     $vote = $_GET['vote'] ?? "0";
 
@@ -93,7 +93,7 @@
                     echo "<div class='col-2'><strong>" . ucwords($key) . "</strong></div>";
                 }
             };
-            echo '</div>';
+            echo '</div><hr>';
         };
 
         $hotel = $hotels["$i"];
@@ -117,7 +117,7 @@
                     echo "<div class='col-2'>" . ucwords($value) . "</div>";
                 }
             }
-            echo '</div>';
+            echo '</div><hr>';
         }
     }
 
