@@ -1,6 +1,12 @@
-Descrizione
-Nome repo: php-hotel
-Partiamo da questo array di hotel. https://www.codepile.net/pile/OEWY7Q1G
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Php Hotel</title>
+</head>
+<body>
 
 <?php
 
@@ -44,20 +50,14 @@ Partiamo da questo array di hotel. https://www.codepile.net/pile/OEWY7Q1G
 
     ];
 
+
+    foreach ($hotels as $hotel) {
+        foreach ($hotel as $key => $value) {
+            echo $key . ': ' . $value . '<br>';
+        }
+        echo '<br>';
+    }
 ?>
-
-
-Stampare una tabella con tutti gli hotel e i relativi dati disponibili.
-
-Iniziate in modo graduale.
-Prima stampate in pagina i dati, senza preoccuparvi dello stile.
-Dopo aggiungete Bootstrap e mostrate le informazioni con una tabella.
-
-Bonus:
-
-    Aggiungere un form ad inizio pagina che tramite una richiesta GET permetta di filtrare gli hotel che hanno un parcheggio.
-    Aggiungere un secondo campo al form che permetta di filtrare gli hotel per voto (es. inserisco 3 ed ottengo tutti gli hotel che hanno un voto di tre stelle o superiore)
-
-NOTA:
-deve essere possibile utilizzare entrambi i filtri contemporaneamente (es. ottenere una lista con hotel che dispongono di parcheggio e che hanno un voto di tre stelle o superiore).
-Se non viene specificato nessun filtro, visualizzare come in precedenza tutti gli hotel.
+    
+</body>
+</html>
