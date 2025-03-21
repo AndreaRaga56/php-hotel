@@ -74,7 +74,7 @@
         </div>
     </form>
 
-    <?php echo '<div><div class="row mt-2 mb-1">';
+    <?php echo '<div class"tabella"><div class="row mt-2 mb-1">';
     $parking = $_GET['parking'] ?? "off";
     $vote = $_GET['vote'] ?? "0";
 
