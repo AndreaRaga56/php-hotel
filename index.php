@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,10 @@
     <link rel="stylesheet" href="style.css">
     <title>Php Hotel</title>
 </head>
+
 <body>
 
-<?php
+    <?php
 
     $hotels = [
 
@@ -51,45 +53,76 @@
 
     ];
 
-    echo '<h1>Hotels</h1>';
+    echo '<h1>Hotels</h1>'; ?>
 
-    echo '<div><div class="row mt-5 mb-1">';
+    <form method="GET" action="./index.php" class="row align-items-center myform">
+        <div class="col-2">
+            <label for="vote">Voto</label>
+            <select name="vote" id="vote">
+                <option value="">Tutti</option>
+                <?php for ($i = 1; $i <= 5; $i++): ?>
+                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                <?php endfor; ?>
+            </select>
+        </div>
+        <div class="col-2">
+            <input type="checkbox" name="parking" id="parking">
+            <label for="parking">Parcheggio</label>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-primary">Cerca</button>
+        </div>
+    </form>
+
+    <?php echo '<div><div class="row mt-2 mb-1">';
+    $parking = $_GET['parking'] ?? "off";
+    $vote = $_GET['vote'] ?? "0";
+
     //Printer della tabella
-    for ($i=0; $i < count($hotels); $i++) {
+    for ($i = 0; $i < count($hotels); $i++) {
         //Printer dell'intestazione della tabella
-        if ($i==0){
+        if ($i == 0) {
             foreach ($hotels["$i"] as $key => $value) {
-                echo "<div class='col-2'><strong>" . ucwords($key) . "</strong></div>";
+                if ($key === "vote" || $key === "parking") {
+                    echo "<div class='col-1'><strong>" . ucwords($key) . "</strong></div>";
+                } elseif ($key === "distance_to_center") {
+                    echo "<div class='col-3'><strong> Distance to Center</strong></div>";
+                } elseif ($key === "description") {
+                    echo "<div class='col-3'><strong>" . ucwords($key) . "</strong></div>";
+                } else {
+                    echo "<div class='col-2'><strong>" . ucwords($key) . "</strong></div>";
+                }
             };
             echo '</div>';
         };
-        echo '<div class="row">';
 
-        //Printer del contenuto della tabella
-        foreach ($hotels["$i"] as $key => $value) {   
-            if ($value===true||$value===false){
-                if ($value===true){
-                echo "<div class='col-2'>Presente</div>";
-                } else{
-                    echo "<div class='col-2'>Assente</div>";
+        $hotel = $hotels["$i"];
+
+        if (($parking === "on" && $hotel['parking'] == 0) || $hotel['vote'] < $vote) {
+        } else {
+            //Printer del contenuto della tabella
+            echo '<div class="row">';
+            foreach ($hotels["$i"] as $key => $value) {
+                if ($key === "vote" || $key === "parking") {
+                    if ($value === true) {
+                        echo "<div class='col-1'>Presente</div>";
+                    } elseif ($value === false) {
+                        echo "<div class='col-1'>Assente</div>";
+                    } else {
+                        echo "<div class='col-1'>" . ucwords($value) . "</div>";
+                    }
+                } elseif ($key === "distance_to_center" || $key === "description") {
+                    echo "<div class='col-3'>" . ucwords($value) . "</div>";
+                } else {
+                    echo "<div class='col-2'>" . ucwords($value) . "</div>";
                 }
-            } else {      
-            echo "<div class='col-2'>" . ucwords($value) . "</div>"; 
-            }        
+            }
+            echo '</div>';
         }
-        echo '</div>';
     }
 
-    
+    echo '</div>'; ?>
 
-    // foreach ($hotels as $hotel) {
-    //     foreach ($hotel as $key => $value) {
-    //         echo "<div> $key: $value </div>";
-    //     }
-    //     echo '<br>';
-    // }
-    echo '</div>';
-?>
-    
 </body>
+
 </html>
