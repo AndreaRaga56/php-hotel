@@ -55,14 +55,14 @@
 
     echo '<h1>Hotels</h1>'; ?>
 
-    <form method="GET" action="./index.php" class="row align-items-center myform">
+    <form method="GET" action="" class="row align-items-center myform">
         <div class="col-2">
-            <label for="vote">Voto</label>
-            <select name="vote" id="vote">
-                <option value="">Tutti</option>
-                <?php for ($i = 1; $i <= 5; $i++): ?>
-                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                <?php endfor; ?>
+            <label for="vote">Voto minimo</label>
+            <select class="px-1" name="vote" id="vote">
+                <option value="">0</option>
+                <?php for ($i = 1; $i <= 5; $i++){
+                    echo "<option value=$i> $i </option>;";
+                    };?>
             </select>
         </div>
         <div class="col-2">
@@ -99,6 +99,7 @@
         $hotel = $hotels["$i"];
 
         if (($parking === "on" && $hotel['parking'] == 0) || $hotel['vote'] < $vote) {
+            continue;
         } else {
             //Printer del contenuto della tabella
             echo '<div class="row">';
